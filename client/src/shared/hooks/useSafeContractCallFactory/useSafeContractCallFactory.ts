@@ -26,7 +26,6 @@ export const safeContractCallFactory =
         args,
         method: method as string,
       })
-      // mapArrayToObject
     )
 
 export const safeContractCallsFactory =

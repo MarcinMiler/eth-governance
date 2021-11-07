@@ -1,6 +1,8 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 import { DAppProvider } from '@usedapp/core'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import reportWebVitals from './reportWebVitals'
 import { config } from './shared/constants/eth'
@@ -13,6 +15,7 @@ ReactDOM.render(
       <>
         <GlobalStyle />
         <GovernancePage />
+        <ToastContainer />
       </>
     </DAppProvider>
   </React.StrictMode>,

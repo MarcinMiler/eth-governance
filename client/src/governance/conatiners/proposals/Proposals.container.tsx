@@ -1,12 +1,12 @@
 import * as E from 'fp-ts/es6/Either'
 import * as A from 'fp-ts/es6/Array'
 import * as F from 'fp-ts/es6/function'
+import { useState } from '@hookstate/core'
 
 import { Proposal } from '../../components/proposal/Proposal.component'
 import { useProposals } from '../../hooks/useProposals'
-import * as S from './styles'
-import { useState } from '@hookstate/core'
 import { VoteProposalModalState } from '../voteProposalModal/VoteProposalModal.container'
+import * as S from './styles'
 
 export const Proposals = () => {
   const voteForProposalModalState = useState(VoteProposalModalState)

@@ -4,6 +4,8 @@ import {
 } from '@usedapp/core'
 import { Contract } from 'ethers'
 
+import { useTransactionNotifications } from '../useTransactionNotifications/useTransactionNotifications'
+
 interface UseSafeContractFunctionReturnType<
   ContractType extends Contract,
   Key extends keyof ContractType['functions'],
@@ -25,5 +27,10 @@ export const safeContractFunctionFactory =
       contract,
       functionName as string
     )
-    return { send: (...args: Args) => send(...args), state }
+    useTransactionNotifications(state.status)
+
+    return {
+      send: (...args: Args) => send(...args),
+      state,
+    }
   }

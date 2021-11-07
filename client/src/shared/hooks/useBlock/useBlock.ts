@@ -12,7 +12,7 @@ export const useBlock = (blockNumber: number) => {
     const blockDetails = await ethers.library?.getBlock(blockNumber)
 
     setBlock(blockDetails || null)
-  }, [])
+  }, [ethers.library, setBlock, blockNumber])
 
   React.useEffect(() => {
     getBlockDetails()

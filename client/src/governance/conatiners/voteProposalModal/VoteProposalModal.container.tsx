@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { createState, useState } from '@hookstate/core'
+
 import { Input } from '../../../shared/components/input/Input.component'
 import { Modal } from '../../../shared/components/modal/Modal.component'
 import { Button } from '../../../shared/components/button/Button.component'
+import { useGovernanceFunction } from '../../contracts/governance'
 import {
   Title,
   ForVoteType,
@@ -10,7 +12,6 @@ import {
   VoteTypesWrapper,
   ButtonWrapper,
 } from './styles'
-import { useGovernanceFunction } from '../../contracts/governance'
 
 export const VoteProposalModalState = createState({
   isOpen: false,
@@ -18,20 +19,10 @@ export const VoteProposalModalState = createState({
 })
 
 export const VoteProposalModal = () => {
-  const voteForProposal = useGovernanceFunction('vote')
-
-  React.useEffect(() => {
-    if (voteForProposal.state.status === 'Success') {
-      closeModal()
-    }
-  }, [voteForProposal.state])
-
   const modalState = useState(VoteProposalModalState)
   const [amount, setAmount] = React.useState('')
   const [voteType, setVoteType] = React.useState<boolean | null>(null)
-
-  const isOpen = modalState.get().isOpen
-  const proposalId = modalState.get().proposalId
+  const { state, send } = useGovernanceFunction('vote')
 
   const closeModal = () => {
     modalState.merge({ isOpen: false, proposalId: '' })
@@ -39,12 +30,17 @@ export const VoteProposalModal = () => {
     setVoteType(null)
   }
 
+  React.useEffect(() => {
+    if (state.status === 'Success') {
+      closeModal()
+    }
+  }, [state.status])
+
   const voteForProposalHanlder = () =>
-    voteForProposal.send(
-      proposalId,
-      amount,
-      voteType === null ? true : voteType
-    )
+    send(proposalId, amount, voteType === null ? true : voteType)
+
+  const isOpen = modalState.get().isOpen
+  const proposalId = modalState.get().proposalId
 
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
@@ -65,7 +61,9 @@ export const VoteProposalModal = () => {
       <Input label="Amount" value={amount} onChange={setAmount} />
 
       <ButtonWrapper>
-        <Button onClick={voteForProposalHanlder}>V O T Ξ</Button>
+        <Button onClick={voteForProposalHanlder}>
+          {state.status === 'Mining' ? 'Loading' : 'V O T Ξ'}
+        </Button>
       </ButtonWrapper>
     </Modal>
   )

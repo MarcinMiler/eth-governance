@@ -4,8 +4,8 @@ import { createState, useState } from '@hookstate/core'
 import { Button } from '../../../shared/components/button/Button.component'
 import { Input } from '../../../shared/components/input/Input.component'
 import { Modal } from '../../../shared/components/modal/Modal.component'
-import { ButtonWrapper, Title } from './styles'
 import { useGovernanceFunction } from '../../contracts/governance'
+import { ButtonWrapper, Title } from './styles'
 
 export const CreateProposalModalState = createState(false)
 
@@ -18,12 +18,17 @@ export const CreateProposalModalContainer = () => {
   const { send, state } = useGovernanceFunction('createProposal')
 
   React.useEffect(() => {
-    state.status === 'Success' && modalState.set(false)
-  }, [state])
+    if (state.status === 'Success') {
+      modalState.set(false)
+      formState.set({ title: '' })
+    }
+  }, [state.status])
 
   const isOpen = modalState.get()
 
-  const createPropsal = () => send(formState.get().title)
+  const createPropsal = () => {
+    send(formState.get().title)
+  }
 
   return (
     <Modal isOpen={isOpen} closeModal={() => modalState.set(false)}>
