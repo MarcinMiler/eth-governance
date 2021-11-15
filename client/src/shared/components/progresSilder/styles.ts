@@ -10,7 +10,7 @@ export const Container = styled.div`
   border-radius: 7px;
 `
 type ForVotesProggresProps = {
-  forVotes: string
+  forVotes: number
 }
 
 export const ForVotesProggres = styled.div<ForVotesProggresProps>`
@@ -25,7 +25,7 @@ export const ForVotesProggres = styled.div<ForVotesProggresProps>`
 `
 
 type AgainstVotesProggresProps = {
-  againstVotes: string
+  againstVotes: number
 }
 
 export const AgainstVotesProgress = styled.div<AgainstVotesProggresProps>`

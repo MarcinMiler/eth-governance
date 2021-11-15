@@ -22,6 +22,7 @@ import {
 } from './styles'
 
 type ProposalProps = {
+  brainhubTokenTotalSupply: number
   onProposalClick?: (proposalId: string) => void
 } & ProposalType
 
@@ -32,6 +33,7 @@ export const Proposal: React.FC<ProposalProps> = ({
   againstVotes,
   endBlock,
   state,
+  brainhubTokenTotalSupply,
   onProposalClick = () => null,
 }) => {
   const proposalEndTime = useCalculateProposalEndTime(
@@ -63,8 +65,9 @@ export const Proposal: React.FC<ProposalProps> = ({
 
       <ProgressSliderWrapper>
         <ProgressSlider
-          forVotes={forVotes.toString()}
-          againstVotes={againstVotes.toString()}
+          max={brainhubTokenTotalSupply}
+          forVotes={forVotes.toNumber()}
+          againstVotes={againstVotes.toNumber()}
         />
       </ProgressSliderWrapper>
 
