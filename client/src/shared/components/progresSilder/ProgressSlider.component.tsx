@@ -20,7 +20,9 @@ export const ProgressSlider: React.FC<ProgressSliderProps> = ({
   return (
     <Container>
       <ForVotesProggres forVotes={forVotesPercentage} />
-      <AgainstVotesProgress againstVotes={againstVotesPercentage} />
+      <AgainstVotesProgress
+        againstVotes={forVotesPercentage + againstVotesPercentage}
+      />
     </Container>
   )
 }
