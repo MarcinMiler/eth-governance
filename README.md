@@ -1,6 +1,8 @@
 # Governance Protocol
 
 ![app](./screenshots/app.png)
+![create-proposal](./screenshots/createProposal.png)
+![vote-for-proposal](./screenshots/voteForProposal.png)
 
 ## Features
 
