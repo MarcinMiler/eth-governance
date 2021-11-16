@@ -11,7 +11,7 @@ import { safeContractFunctionFactory } from '../../shared/hooks/useSafeContractF
 
 const governanceAddress =
   process.env.NODE_ENV === 'production'
-    ? '0x2527C5A39A0c4892816d39eB47838a7b7F239baB'
+    ? '0xabD7BA77A7164203B46dff5C7158cf5aB6802EB2'
     : '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
 export const governance = {
   address: governanceAddress,

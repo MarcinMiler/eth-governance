@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
   solidity: '0.8.4',
   networks: {
     ropsten: {
-      url: 'https://eth-ropsten.alchemyapi.io/v2/dJH0cvGsKKJtg_xFeKpKDMkVHhertVWb',
+      url: process.env.NETWORK_URL,
       accounts: [
         '0x95a215297c430d4e3762e3184323df03c1f20c2425ec35a6ec7069e0852b6ab6',
       ],

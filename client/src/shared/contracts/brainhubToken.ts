@@ -8,7 +8,7 @@ import { safeContractFunctionFactory } from '../hooks/useSafeContractFunction/us
 
 const brainhubTokenAddress =
   process.env.NODE_ENV === 'production'
-    ? '0xB85100C52b7edA209F9238bf8F032Baeff730277'
+    ? '0x8010de6b4C56d78B1829C5CeCBA591E291EA71A6'
     : '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 export const brainhubToken = {
   address: brainhubTokenAddress,
